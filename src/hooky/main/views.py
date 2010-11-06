@@ -7,7 +7,13 @@ from django.utils import simplejson
 
 @login_required
 def setup(request):
-    pass
+    return render_to_response(
+        'hooky/setup.html',
+        {
+            'form': None,
+        },
+        context_instance=RequestContext(request)
+    )
 
-def callback(request):
-    pass
+def hook_callback(request):
+    return HttpResponse(simplejson.dumps({}))

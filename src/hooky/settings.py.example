@@ -1,4 +1,5 @@
 # Django settings for hooky project.
+import os
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -105,3 +106,8 @@ TEMPLATE_CONTEXT_PROCESSORS =(
 
 # User profile model to provide extra data for users
 AUTH_PROFILE_MODULE = 'main.userprofile'
+
+# Serve static media files from Django, useful for dev
+SERVE_STATIC = True
+
+LOGIN_REDIRECT_URL = '/'

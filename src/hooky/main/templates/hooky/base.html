@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Hooky</title>
+    {% block head %}{% endblock head %}
+</head>
+
+<body>
+    <div id="wrapper" class="clearfix">
+
+	<div id="header" class="clearfix">
+	    {% if request.user.is_authenticated %}
+                <a href="{% url auth_logout %}">Logout</a>
+	    {% else %}
+                <a href="{% url auth_login %}">Login</a>
+	    {% endif %}
+	</div>
+	<div id="content">
+	    <div id="primary" class="clearfix">
+		{% block primary %}{% endblock primary %}
+	    </div>
+	    <div id="secondary">
+		{% block secondary %}{% endblock secondary %}
+	    </div>
+	</div>
+	<div id="footer">
+	</div>
+    </div>
+</body>
+</html>

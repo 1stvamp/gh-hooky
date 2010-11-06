@@ -1,0 +1,12 @@
+{% extends "hooky/base.html" %}
+
+{% block primary %}
+    <div class="form-data">
+        <h3>Welcome</h3>
+        <form action="." method="POST" >
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Login" />
+        </form>
+    </div>
+{% endblock primary %}
