@@ -1,0 +1,11 @@
+.installed.cfg
+bin
+buildout.cfg
+
+develop-eggs
+downloads
+eggs
+parts
+requirements.txt
+setup.py
+

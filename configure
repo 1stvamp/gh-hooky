@@ -1,0 +1,67 @@
+#! /usr/bin/env python
+
+"""CLI script to generate a buildout.cfg with the correct
+environment variables and requirements.
+"""
+
+import os
+import sys
+import shutil
+import subprocess
+from optparse import OptionParser
+
+template = """[buildout]
+parts = django
+cwd = %(cwd)s
+eggs =
+  %(eggs)s
+versions = versions
+
+[django]
+recipe = isotoma.recipe.django
+version = 1.2.3
+project = hooky
+projectegg = ${django:project}
+settings = settings
+test = hooky
+eggs = ${buildout:eggs}
+
+[versions]
+%(versions)s
+"""
+
+usage = """usage: %prog [options]"""
+parser = OptionParser(usage=usage)
+
+def main():
+	file_path = os.path.dirname(__file__)
+	(options, pos_args) = parser.parse_args()
+
+	print "Reading requirements.txt"
+	requirements = open('requirements.txt', 'r').readlines()
+
+	eggs = []
+	versions = []
+	for req in requirements:
+		if "==" in req:
+			(name, version) = req.split('==')
+			versions.append("%s = %s" % (name, version,))
+		else:
+			name = req
+		if name != "Django":
+			eggs.append(name)
+
+	out = template % {
+		'cwd': os.path.realpath(file_path),
+		'eggs': "\n  ".join(eggs),
+		'versions': "".join(versions),
+	}
+
+	print "Writing config to ./buildout.cfg"
+	f = open(os.path.join(file_path, 'buildout.cfg'), 'w+')
+	f.write(out)
+	f.close()
+	return 0
+
+if __name__ == "__main__":
+	sys.exit(main())
