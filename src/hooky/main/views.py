@@ -47,6 +47,6 @@ def hook_callback(request, id, key):
             github.issues.comment(
                 "%s/%s" % (payload['repository']['owner']['name'], payload['repository']['name']),
                 issue_num,
-                "Commit [%s](%s) - %s" % (commit['id'], commit['url'], commit['message'])
+                "Commit %s by %s - %s" % (commit['id'], commit['author']['name'], commit['message'])
             )
     return HttpResponse('OK')
