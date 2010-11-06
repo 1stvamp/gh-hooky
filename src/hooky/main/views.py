@@ -30,10 +30,8 @@ def setup(request):
         context_instance=RequestContext(request)
     )
 
-def hook_callback(request, id):
-    if not request.GET.has_key('key'):
-        return HttpResponseNotAllowed('Invalid key')
-    user = get_object_or_404(User, pk=id, userprofile__key=request.GET.get('key'))
+def hook_callback(request, id, key):
+    user = get_object_or_404(User, pk=id, userprofile__key=key)
     payload = simplejson.loads(request.POST.get('payload'))
     for commit in payload['commits']:
         msg_data = parse_message(commit['message'])
