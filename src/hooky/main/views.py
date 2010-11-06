@@ -1,4 +1,5 @@
 from github2.client import Github
+from github2.issues import Issues
 from django.http import HttpResponse, HttpResponseNotAllowed
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
@@ -43,6 +44,9 @@ def hook_callback(request, id, key):
                 api_token=user.get_profile().github_key,
                 requests_per_second=1
             )
-            issue = github.issues.show("%s/%s" % (payload['repository']['owner']['name'], payload['repository']['name']), issue_num)
-            issue.comment("Commit [%s](%s) - %s" % (commit['id'], commit['url'], commit['message']))
+            github.issues.comment(
+                "%s/%s" % (payload['repository']['owner']['name'], payload['repository']['name']),
+                issue_num"Commit [%s](%s) - %s" % (commit['id'], commit['url'],
+                commit['message'])
+            )
     return HttpResponse('OK')
