@@ -31,7 +31,7 @@ def setup(request):
     )
 
 def hook_callback(request, id):
-    if not request.GET.has_key():
+    if not request.GET.has_key('key'):
         return HttpResponseNotAllowed('Invalid key')
     user = get_object_or_404(User, pk=id, userprofile__key=request.GET.get('key'))
     payload = simplejson.loads(request.POST.get('payload'))
