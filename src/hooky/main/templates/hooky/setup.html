@@ -2,7 +2,7 @@
 
 {% block primary %}
     <div>
-        Post commit URL: http://{{ site.domain }}/hook/?key={{ request.user.get_profile.key }}
+        Post commit URL: http://{{ site.domain }}/hook/{{ request.user.id }}/?key={{ request.user.get_profile.key }}
     </div>
     <div class="form-data">
         <h3>Setup hooky</h3>
