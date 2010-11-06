@@ -32,3 +32,15 @@ if getattr(settings, 'SERVE_STATIC', False):
             'document_root': settings.MEDIA_ROOT }
          ),
     )
+
+# These custom error handlers return the correct Http codes for their respective
+# errors, as opposed to a 200 as normally returned.
+# We can also redirect to templates wherever we like here.
+handler404 = '%s.return_404' % (settings.ROOT_URLCONF,)
+handler500 = '%s.return_500' % (settings.ROOT_URLCONF,)
+
+def return_404(request):
+    return HttpResponseNotFound(render_to_string("hooky/404.html"))
+
+def return_500(request):
+    return HttpResponseServerError(render_to_string("hooky/500.html"))
