@@ -43,6 +43,6 @@ def hook_callback(request, id, key):
                 api_token=user.get_profile().github_key,
                 requests_per_second=1
             )
-            issue = github.issues.show("%s/%s" % (commit['repository']['owner']['name'], commit['repository']['name']), issue_num)
+            issue = github.issues.show("%s/%s" % (payload['repository']['owner']['name'], payload['repository']['name']), issue_num)
             issue.comment("Commit [%s](%s) - %s" % (commit['id'], commit['url'], commit['message']))
     return HttpResponse('OK')
