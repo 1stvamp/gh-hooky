@@ -1,6 +1,9 @@
 {% extends "hooky/base.html" %}
 
 {% block primary %}
+    <div>
+        Post commit URL: http://{{ site.domain }}/hook/?key={{ request.user.get_profile.key }}
+    </div>
     <div class="form-data">
         <h3>Setup hooky</h3>
         <form action="." method="POST" >
