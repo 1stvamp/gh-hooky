@@ -12,7 +12,7 @@ def parse_message(msg):
     }
     for text in ISSUE_REGEX.finditer(msg):
         try:
-            data['issues'].append(text.group(1).replace('#',''))
+            data['issues'].append(text.group(2).replace('#',''))
         except IndexError:
             pass
     for text in HASH_REGEX.finditer(msg):
