@@ -1,6 +1,6 @@
 import re
 
-ISSUE_REGEX = re.compile(r'toward[s]? #[0-9]*', re.IGNORECASE)
+ISSUE_REGEX = re.compile(r'toward[s]{0-1} #[0-9]*', re.IGNORECASE)
 HASH_REGEX = re.compile(r'#[0-9a-zA-Z+_]*', re.IGNORECASE)
 USER_REGEX = re.compile(r'@[0-9a-zA-Z+_]*', re.IGNORECASE)
 
