@@ -1,6 +1,6 @@
 import re
 
-ISSUE_REGEX = re.compile(r'toward[s]* #[0-9]*', re.IGNORECASE)
+ISSUE_REGEX = re.compile(r'toward[s]* #([0-9])*', re.IGNORECASE)
 HASH_REGEX = re.compile(r'#[0-9a-zA-Z+_]*', re.IGNORECASE)
 USER_REGEX = re.compile(r'@[0-9a-zA-Z+_]*', re.IGNORECASE)
 
@@ -12,7 +12,7 @@ def parse_message(msg):
     }
     for text in ISSUE_REGEX.finditer(msg):
         try:
-            data['issues'].append(text.group(2).replace('#',''))
+            data['issues'].append(text.group(1).replace('#',''))
         except IndexError:
             pass
     for text in HASH_REGEX.finditer(msg):
