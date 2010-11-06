@@ -1,5 +1,6 @@
 from github2.client import Github
 from django.http import HttpResponse, HttpResponseNotAllowed
+from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.template import RequestContext
@@ -30,6 +31,7 @@ def setup(request):
         context_instance=RequestContext(request)
     )
 
+@csrf_exempt
 def hook_callback(request, id, key):
     user = get_object_or_404(User, pk=id, userprofile__key=key)
     payload = simplejson.loads(request.POST.get('payload'))
