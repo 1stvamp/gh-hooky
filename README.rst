@@ -5,13 +5,14 @@ About
 Setup
 =====
 Using `buildout`::
-  cd gh-hooky
-  ./configure
-  buildout
-  cp src/hooky/settings.py.exampe src/hooky/settings.py
-  # Edit settings with your DB info etc.
-  bin/django syncdb
-  bin/django runserver
+
+    cd gh-hooky
+    ./configure
+    buildout
+    cp src/hooky/settings.py.exampe src/hooky/settings.py
+    # Edit settings with your DB info etc.
+    bin/django syncdb
+    bin/django runserver
 
 Usage
 =====
