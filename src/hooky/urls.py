@@ -25,7 +25,7 @@ urlpatterns = patterns('',
         name='auth_logout'
     ),
     url(r'^$', setup, name='setup'),
-    url(r'^hook/(?P<id>\d+)/(?P<key>.*)/$', hook_callback, name='hook_callback'),
+    url(r'^hook/(?P<id>\d+)/(?P<key>\w+)/$', hook_callback, name='hook_callback'),
 )
 
 if getattr(settings, 'SERVE_STATIC', False):
