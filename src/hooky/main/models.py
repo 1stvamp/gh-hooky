@@ -18,11 +18,11 @@ def user_save_handler(sender, **kwargs):
 post_save.connect(user_save_handler, User)
 
 TYPE_CHOICES = (
-    (0, 'user'),
-    (1, 'hashtag'),
+    ('0', 'user'),
+    ('1', 'hashtag'),
 )
 ACTION_CHOICES = (
-    (0, 'email'),
+    ('0', 'email'),
 )
 
 class Notification(models.Model):
