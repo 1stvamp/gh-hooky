@@ -24,6 +24,7 @@
             {{ form.as_p }}
             <h3>Notifications</h3>
             <div id="notifications">
+                {{ formset.management_form }}
                 {% for form in formset.forms %}
                     <div>{{ form.as_p }}</div>
                 {% endfor %}
