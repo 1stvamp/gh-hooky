@@ -1,5 +1,6 @@
 from django import forms
-from hooky.main.models import UserProfile, User
+from django.forms.models import inlineformset_factory
+from hooky.main.models import UserProfile, User, Notification
 
 class UserProfileForm(forms.ModelForm):
     user = forms.ModelChoiceField(queryset=User.objects.all(), widget=forms.HiddenInput())
@@ -17,3 +18,5 @@ class UserProfileForm(forms.ModelForm):
         instance.id = self.cleaned_data['id']
         instance.save()
         return instance
+
+NotificationFormSet = inlineformset_factory(User, Notification, extra=1)

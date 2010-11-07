@@ -1,5 +1,18 @@
 {% extends "hooky/base.html" %}
 
+{% block head %}
+        <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+        <script type="text/javascript" src="/static/js/jquery.formset-1.2/src/jquery.formset.min.js"></script>
+        <script type="text/javascript">
+            // <![CDATA[
+                $(function() {
+                    $('#notifications div label:contains("Delete:")').remove();
+                    $('#notifications div').formset();
+                });
+            // ]]>
+        </script>
+{% endblock head %}
+
 {% block primary %}
     <div>
         Post commit URL: <code>http://{{ site.domain }}/hook/{{ request.user.id }}/{{ request.user.get_profile.key }}/</code>
@@ -9,6 +22,12 @@
         <form action="." method="POST" >
             {% csrf_token %}
             {{ form.as_p }}
+            <h3>Notifications</h3>
+            <div id="notifications">
+                {% for form in formset.forms %}
+                    <div>{{ form.as_p }}</div>
+                {% endfor %}
+            </div>
             <input type="submit" value="Save" />
         </form>
     </div>
